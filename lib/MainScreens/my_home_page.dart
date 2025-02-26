@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_azkar/MainScreens/homepage_utils/asma2_hosna.dart';
 import 'package:muslim_azkar/MainScreens/homepage_utils/hadith_card.dart';
 import 'package:muslim_azkar/MainScreens/homepage_utils/wrd_card.dart';
@@ -68,6 +69,11 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       // drawer: const MainDrawer(),
       appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "أذكار المسلم",
+          style: GoogleFonts.kufam(),
+        ),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         leading: Builder(
           // Used for the drawer. To open the drawer you need to use a context under the context of the scaffold.
@@ -98,7 +104,7 @@ class MyHomePage extends StatelessWidget {
                 height: 10,
               ),
               SizedBox(
-                height: 125,
+                height: 150,
 
                 // color: Colors.red,
                 child: GridView.builder(
@@ -106,6 +112,7 @@ class MyHomePage extends StatelessWidget {
                   itemCount:
                       4, // Adjust this based on the number of items you have
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 70,
                     crossAxisCount: 2,
                     childAspectRatio:
                         3.5, // Adjust this ratio to control height

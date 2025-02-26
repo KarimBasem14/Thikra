@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HadithCard extends StatefulWidget {
   const HadithCard({super.key});
@@ -73,11 +74,34 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
         color: Theme.of(context).cardColor,
         child: Column(
           children: [
-            Text(
-              "حديث اليوم",
-              style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
-                    fontSize: 35,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () async {
+                      await Share.share(hadith);
+                    },
+                    icon: const Icon(
+                      Icons.share,
+                      size: 32,
+                    )),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 32.0 +
+                            35.0), // adding 35 to account for the font size, and adding 32 to account for the space that the icon takes, padding just shifts the widget in this case to the right
+                    child: Text(
+                      "حديث اليوم",
+                      style: Theme.of(context)
+                          .appBarTheme
+                          .titleTextStyle
+                          ?.copyWith(
+                            fontSize: 35,
+                          ),
+                    ),
                   ),
+                ),
+              ],
             ),
             const SizedBox(height: 15),
             Center(

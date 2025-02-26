@@ -51,25 +51,25 @@ class _AzkarCounterState extends State<AzkarCounter> {
     return Stack(clipBehavior: Clip.hardEdge, children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: double.infinity,
-          child: SizedBox(
-            // height: tileHeight,
-            child: InkWell(
-              onTap: decrementCounter,
-              child: Card(
-                  color: tileColor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Center(
-                      child: Text(
-                        widget.text,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: textSize),
-                      ),
+        child: InkWell(
+          onTap: decrementCounter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+                minHeight:
+                    120), // Used to make the card expand according to the text, 120 height is approximately needed for the card with the least text, if the card needs more space it simply expands beyond that
+            child: Card(
+                color: tileColor,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.all(30), // Between text and card border
+                  child: Center(
+                    child: Text(
+                      widget.text,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: textSize),
                     ),
-                  )),
-            ),
+                  ),
+                )),
           ),
         ),
       ),
