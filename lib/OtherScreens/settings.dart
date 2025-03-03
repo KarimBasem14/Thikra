@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_azkar/api/notificationapi.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -34,6 +35,7 @@ class _SettingsState extends State<Settings> {
   void initState() {
     super.initState();
     loadPreferences();
+    updateTime();
   }
 
   Future<void> loadPreferences() async {
@@ -70,10 +72,18 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  TimeOfDay? morningTime = NotificationService.morningTime;
-  TimeOfDay? nightTime = NotificationService.nightTime;
+  TimeOfDay? morningTime = const TimeOfDay(hour: 7, minute: 30);
+  TimeOfDay? nightTime = const TimeOfDay(hour: 17, minute: 00);
+
+  Future<void> updateTime() async {
+    morningTime = await NotificationService.morningTime;
+    nightTime = await NotificationService.nightTime;
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("Morning time is $morningTime");
+    print("Night time is $nightTime");
     return Scaffold(
       appBar: AppBar(
         title: Align(
@@ -114,6 +124,13 @@ class _SettingsState extends State<Settings> {
                               context: context, initialTime: morningTime!) ??
                           morningTime;
                       setState(() {});
+                      enableNotifications();
+                      if (morningTime != null) {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setInt('morning_hour', morningTime!.hour);
+                        prefs.setInt('morning_minute', morningTime!.minute);
+                      }
                       print(morningTime);
                     },
                     child: ListTile(
@@ -124,9 +141,16 @@ class _SettingsState extends State<Settings> {
                   GestureDetector(
                     onTap: () async {
                       nightTime = await showTimePicker(
-                              context: context, initialTime: morningTime!) ??
+                              context: context, initialTime: nightTime!) ??
                           nightTime;
                       setState(() {});
+                      enableNotifications();
+                      if (nightTime != null) {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setInt('night_hour', nightTime!.hour);
+                        prefs.setInt('night_minute', nightTime!.minute);
+                      }
                       print(nightTime);
                     },
                     child: ListTile(

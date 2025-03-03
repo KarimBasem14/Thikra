@@ -18,12 +18,19 @@ class NotificationService {
   static int NIGHT_HOUR = 17; // 5:00 PM
   static int NIGHT_MINUTE = 00;
 
-  static TimeOfDay get morningTime {
+  static Future<TimeOfDay> get morningTime async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    MORNING_HOUR = prefs.getInt('morning_hour') ?? 7;
+    MORNING_MINUTE = prefs.getInt('morning_minute') ?? 30;
     return TimeOfDay(hour: MORNING_HOUR, minute: MORNING_MINUTE);
   }
 
-  static TimeOfDay get nightTime =>
-      TimeOfDay(hour: NIGHT_HOUR, minute: NIGHT_MINUTE);
+  static Future<TimeOfDay> get nightTime async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    NIGHT_HOUR = prefs.getInt('night_hour') ?? 17;
+    NIGHT_MINUTE = prefs.getInt('night_minute') ?? 00;
+    return TimeOfDay(hour: NIGHT_HOUR, minute: NIGHT_MINUTE);
+  }
 
   static void updateMorningTime(TimeOfDay morningTime) {}
 
@@ -106,6 +113,13 @@ class NotificationService {
   }
 
   static Future<void> scheduleDailyNotifications() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    MORNING_HOUR = prefs.getInt('morning_hour') ?? 7;
+    MORNING_MINUTE = prefs.getInt('morning_minute') ?? 30;
+    NIGHT_HOUR = prefs.getInt('night_hour') ?? 17;
+    NIGHT_MINUTE = prefs.getInt('night_minute') ?? 00;
+
     print("Call to scheduleDailyNotifications() was succefful.");
     if (!dailyNotificationsEnabled) {
       return;
