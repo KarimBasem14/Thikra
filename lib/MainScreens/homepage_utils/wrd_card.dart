@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WrdCard extends StatelessWidget {
   const WrdCard(
@@ -15,6 +16,8 @@ class WrdCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return SizedBox(
       // height: 40,
       child: InkWell(
@@ -30,7 +33,10 @@ class WrdCard extends StatelessWidget {
               Text(
                 title,
                 textAlign: TextAlign.end,
-                style: const TextStyle(color: Colors.white),
+                style: GoogleFonts.marhey(
+                    textStyle: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black54,
+                        fontSize: 20)),
               ),
             ],
           ),

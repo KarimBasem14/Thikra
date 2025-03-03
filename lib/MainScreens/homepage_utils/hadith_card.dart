@@ -94,8 +94,8 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
                       "حديث اليوم",
                       style: Theme.of(context)
                           .appBarTheme
-                          .titleTextStyle
-                          ?.copyWith(
+                          .titleTextStyle!
+                          .copyWith(
                             fontSize: 35,
                           ),
                     ),
@@ -110,10 +110,12 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
                   : Text(
                       hadith,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                      ),
+                      style: Theme.of(context)
+                          .appBarTheme
+                          .titleTextStyle!
+                          .copyWith(
+                            fontSize: 25,
+                          ),
                     ),
             ),
             Row(

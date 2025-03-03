@@ -20,44 +20,46 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final DateTime now = DateTime.now();
-  final List<List> wrdCardsInfo = [
-    const [
-      "ورد المساء",
-      Icon(
-        Icons.dark_mode_rounded,
-        color: Colors.white,
-      ),
-      Colors.deepPurple
-    ],
-    const [
-      "ورد الصباح",
-      Icon(
-        Icons.light_mode,
-        color: Colors.white,
-      ),
-      Colors.orangeAccent
-    ],
-    const [
-      "دروس متنوعة",
-      Icon(
-        Icons.book,
-        color: Colors.white,
-      ),
-      Colors.lightBlue
-    ],
-    [
-      "تسبيح",
-      const ImageIcon(
-        AssetImage(
-            r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png"),
-        color: Colors.white,
-      ),
-      Colors.blue.shade900
-    ]
-  ];
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final List<List> wrdCardsInfo = [
+      [
+        "ورد المساء",
+        Icon(
+          Icons.dark_mode_rounded,
+          color: isDarkMode ? Colors.white : Colors.black,
+        ),
+        isDarkMode ? Colors.deepPurple : Colors.teal.shade400
+      ],
+      [
+        "ورد الصباح",
+        Icon(
+          Icons.light_mode,
+          color: isDarkMode ? Colors.white : Colors.black,
+        ),
+        isDarkMode ? Colors.orangeAccent : Colors.orange.shade200
+      ],
+      [
+        "أذكار متنوعة",
+        Icon(
+          Icons.book,
+          color: isDarkMode ? Colors.white : Colors.black,
+        ),
+        Colors.lightBlue
+      ],
+      [
+        "تسبيح",
+        ImageIcon(
+          const AssetImage(
+              r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png"),
+          color: isDarkMode ? Colors.white : Colors.black,
+        ),
+        isDarkMode ? Colors.blue.shade900 : Colors.blue.shade200
+      ]
+    ];
     bool isNight = true;
     // double width = MediaQuery.sizeOf(context).width;
     if (now.hour >= 4 && now.hour <= 16) {

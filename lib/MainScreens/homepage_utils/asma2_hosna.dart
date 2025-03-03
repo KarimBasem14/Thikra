@@ -150,9 +150,7 @@ class _Asma2HosnaState extends State<Asma2Hosna> {
             ),
             Text(
               esmHasan,
-              style: TextStyle(
-                  fontSize: 40,
-                  color: isDarkMode ? Colors.black54 : Colors.white),
+              style: const TextStyle(fontSize: 40, color: Colors.black54),
             ),
             const SizedBox(
               height: 20,

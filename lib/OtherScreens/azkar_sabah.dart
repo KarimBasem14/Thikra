@@ -54,17 +54,20 @@ class AzkarSabah extends StatelessWidget {
           ),
         ),
       ),
-      body: AnimatedList(
-        key: azkarSabahListKey,
-        initialItemCount: _azkarsabah.length,
-        itemBuilder: (ctx, i, animation) {
-          return AzkarCounter(
-            text: _azkarsabah[i].text,
-            count: _azkarsabah[i].count,
-            removeItem: removeitem,
-            index: i,
-          );
-        },
+      body: Container(
+        margin: const EdgeInsets.all(15),
+        child: AnimatedList(
+          key: azkarSabahListKey,
+          initialItemCount: _azkarsabah.length,
+          itemBuilder: (ctx, i, animation) {
+            return AzkarCounter(
+              text: _azkarsabah[i].text,
+              count: _azkarsabah[i].count,
+              removeItem: removeitem,
+              index: i,
+            );
+          },
+        ),
       ),
     );
   }

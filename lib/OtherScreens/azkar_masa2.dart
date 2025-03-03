@@ -45,17 +45,20 @@ class AzkarMasa2 extends StatelessWidget {
               "أذكار المساء",
             ),
           )),
-      body: AnimatedList(
-        key: azkarMasa2ListKey,
-        initialItemCount: _azkarmasa2.length,
-        itemBuilder: (ctx, i, animation) {
-          return AzkarCounter(
-            text: _azkarmasa2[i].text,
-            count: _azkarmasa2[i].count,
-            removeItem: removeitem,
-            index: i,
-          );
-        },
+      body: Container(
+        margin: const EdgeInsets.all(15),
+        child: AnimatedList(
+          key: azkarMasa2ListKey,
+          initialItemCount: _azkarmasa2.length,
+          itemBuilder: (ctx, i, animation) {
+            return AzkarCounter(
+              text: _azkarmasa2[i].text,
+              count: _azkarmasa2[i].count,
+              removeItem: removeitem,
+              index: i,
+            );
+          },
+        ),
       ),
     );
   }
