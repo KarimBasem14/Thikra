@@ -18,9 +18,9 @@ class TopMainCard extends StatelessWidget {
         onTap: () {
           isNight
               ? Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => AzkarMasa2()))
+                  .push(sideTransitionPageRouteBuilder(AzkarMasa2()))
               : Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => AzkarSabah()));
+                  .push(sideTransitionPageRouteBuilder(AzkarSabah()));
         },
         child: Column(children: [
           ListTile(
@@ -67,4 +67,19 @@ class TopMainCard extends StatelessWidget {
       ),
     );
   }
+}
+
+PageRouteBuilder sideTransitionPageRouteBuilder(Widget pageToGoTo) {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => pageToGoTo,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        final tween = Tween(begin: begin, end: end);
+        final offsetAnimation = animation.drive(tween);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      });
 }

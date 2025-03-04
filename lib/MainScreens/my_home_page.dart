@@ -82,10 +82,9 @@ class MyHomePage extends StatelessWidget {
           builder: (ctx) => IconButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (ctx) => const Settings(),
-                  ),
+                  downTransitionPageRouteBuilder(const Settings()),
                 );
+
                 // Scaffold.of(ctx).openDrawer();
                 // NotificationService.showInstantNotification(
                 //    "karimmmmmm", "omarrrrr");
@@ -124,7 +123,7 @@ class MyHomePage extends StatelessWidget {
                       title: wrdCardsInfo[index][0],
                       color: wrdCardsInfo[index][2],
                       icon: wrdCardsInfo[index][1],
-                      pageToGoTO: wrdCardPages[index],
+                      pageToGoTo: wrdCardPages[index],
                     );
                   },
                 ),
@@ -137,4 +136,19 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+PageRouteBuilder downTransitionPageRouteBuilder(Widget pageToGoTo) {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => pageToGoTo,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, -1.0);
+        const end = Offset.zero;
+        final tween = Tween(begin: begin, end: end);
+        final offsetAnimation = animation.drive(tween);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      });
 }
