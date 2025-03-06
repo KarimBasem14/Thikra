@@ -40,6 +40,7 @@ dependencies:
   share_plus: ^10.1.1
   shared_preferences: ^2.5.2
   google_fonts: ^6.2.1
+  curved_navigation_bar: ^1.0.6
   
   
 
@@ -70,6 +71,8 @@ flutter:
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\sun.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\night.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png
+    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\love.png
+    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\book.png
     - D:\Code\Flutter\muslim_azkar\lib\data\riyad_alsalhin.json
   #   - images/a_dot_ham.jpeg
 

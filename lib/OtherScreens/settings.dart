@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_azkar/api/notificationapi.dart';
-import 'package:share_plus/share_plus.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;

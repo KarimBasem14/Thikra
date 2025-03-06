@@ -117,8 +117,6 @@ class _Asma2HosnaState extends State<Asma2Hosna> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
     int randomNumber = Random().nextInt(99);
     // print(randomNumber);
     esmHasan = _asma2AllahElHosna[randomNumber];

@@ -1,13 +1,12 @@
-import 'package:google_fonts/google_fonts.dart';
-import 'package:muslim_azkar/MainScreens/homepage_utils/asma2_hosna.dart';
-import 'package:muslim_azkar/MainScreens/homepage_utils/hadith_card.dart';
-import 'package:muslim_azkar/MainScreens/homepage_utils/wrd_card.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:muslim_azkar/MainScreens/favorite_hadiths_page.dart';
+import 'package:muslim_azkar/MainScreens/homepage.dart';
+import 'package:muslim_azkar/MainScreens/main_app_bar.dart';
+import 'package:muslim_azkar/MainScreens/support_page.dart';
 import 'package:muslim_azkar/OtherScreens/azkar_masa2.dart';
 import 'package:muslim_azkar/OtherScreens/azkar_sabah.dart';
-import 'package:muslim_azkar/OtherScreens/settings.dart';
 import 'package:muslim_azkar/OtherScreens/tasbih.dart';
 import 'package:flutter/material.dart';
-import 'homepage_utils/top_main_card.dart';
 
 List wrdCardPages = [
   AzkarMasa2(),
@@ -16,139 +15,56 @@ List wrdCardPages = [
   const Tasbih(),
 ];
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
 
-  final DateTime now = DateTime.now();
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _page = 1; // Points to the middle one
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  final List<Widget> _pages = [
+    const SupportPage(),
+    HomePage(),
+    const FavoriteHadithsPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     bool isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
-    final List<List> wrdCardsInfo = [
-      [
-        "ورد المساء",
-        Icon(
-          Icons.dark_mode_rounded,
-          color: isDarkMode ? Colors.white : Colors.black,
-        ),
-        isDarkMode ? Colors.deepPurple : Colors.teal.shade400
-      ],
-      [
-        "ورد الصباح",
-        Icon(
-          Icons.light_mode,
-          color: isDarkMode ? Colors.white : Colors.black,
-        ),
-        isDarkMode ? Colors.orangeAccent : Colors.orange.shade200
-      ],
-      [
-        "أذكار متنوعة",
-        Icon(
-          Icons.book,
-          color: isDarkMode ? Colors.white : Colors.black,
-        ),
-        Colors.lightBlue
-      ],
-      [
-        "تسبيح",
-        ImageIcon(
-          const AssetImage(
-              r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png"),
-          color: isDarkMode ? Colors.white : Colors.black,
-        ),
-        isDarkMode ? Colors.blue.shade900 : Colors.blue.shade200
-      ]
-    ];
-    bool isNight = true;
-    // double width = MediaQuery.sizeOf(context).width;
-    if (now.hour >= 4 && now.hour <= 16) {
-      isNight = false;
-    } else {
-      isNight = true;
-    }
-
     return Scaffold(
-      // drawer: const MainDrawer(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "أذكار المسلم",
-          style: GoogleFonts.kufam(),
-        ),
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        leading: Builder(
-          // Used for the drawer. To open the drawer you need to use a context under the context of the scaffold.
-          builder: (ctx) => IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  downTransitionPageRouteBuilder(const Settings()),
-                );
-
-                // Scaffold.of(ctx).openDrawer();
-                // NotificationService.showInstantNotification(
-                //    "karimmmmmm", "omarrrrr");
-              },
-              icon: const Icon(
-                Icons.settings,
-                color: Color.fromARGB(255, 39, 33, 33),
-              )),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              TopMainCard(isNight: isNight),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 150,
-
-                // color: Colors.red,
-                child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount:
-                      4, // Adjust this based on the number of items you have
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisExtent: 70,
-                    crossAxisCount: 2,
-                    childAspectRatio:
-                        3.5, // Adjust this ratio to control height
-                  ),
-                  itemBuilder: (context, index) {
-                    return WrdCard(
-                      title: wrdCardsInfo[index][0],
-                      color: wrdCardsInfo[index][2],
-                      icon: wrdCardsInfo[index][1],
-                      pageToGoTo: wrdCardPages[index],
-                    );
-                  },
-                ),
-              ),
-              const HadithCard(),
-              const Asma2Hosna(),
-            ],
+      appBar: MainAppBar(context),
+      bottomNavigationBar: CurvedNavigationBar(
+        index: _page,
+        animationDuration: const Duration(milliseconds: 300),
+        color: Theme.of(context).cardColor,
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
+        key: _bottomNavigationKey,
+        items: <Widget>[
+          ImageIcon(
+            const AssetImage(
+                r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\love.png"),
+            size: 32,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
-        ),
+          const Icon(Icons.home_outlined, size: 30),
+          const Icon(Icons.star_outline, size: 30),
+        ],
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
+      ),
+      body: IndexedStack(
+        index: _page,
+        children: _pages,
       ),
     );
   }
-}
-
-PageRouteBuilder downTransitionPageRouteBuilder(Widget pageToGoTo) {
-  return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => pageToGoTo,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, -1.0);
-        const end = Offset.zero;
-        final tween = Tween(begin: begin, end: end);
-        final offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      });
 }

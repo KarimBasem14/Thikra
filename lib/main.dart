@@ -52,17 +52,23 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color.fromRGBO(38, 28, 44, 1),
           colorScheme: kDarkColorScheme,
           cardColor: const Color.fromRGBO(110, 133, 178, 1),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData().copyWith(
+            backgroundColor: const Color.fromRGBO(110, 133, 178, 1),
+          ),
           appBarTheme: const AppBarTheme().copyWith(
               backgroundColor: const Color.fromRGBO(92, 82, 127, 1),
               titleTextStyle: const TextStyle(
                 color: Colors.white,
                 fontSize: 30,
               ))),
-
       theme: ThemeData().copyWith(
           scaffoldBackgroundColor: const Color.fromRGBO(253, 245, 226, 1),
           // colorScheme: kColorScheme,
           cardColor: const Color.fromRGBO(255, 214, 164, 0.7),
+          bottomNavigationBarTheme:
+              const BottomNavigationBarThemeData().copyWith(
+            backgroundColor: const Color.fromRGBO(253, 245, 226, 1),
+          ),
           appBarTheme: const AppBarTheme().copyWith(
             backgroundColor: Colors.amber.shade100,
             titleTextStyle: const TextStyle(
@@ -70,11 +76,6 @@ class MyApp extends StatelessWidget {
               fontSize: 30,
             ),
           )),
-      // theme: ThemeData(
-      //   appBarTheme: const AppBarTheme(color: Colors.green),
-      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-      //   useMaterial3: true,
-      // ),
       home: MyHomePage(),
     );
   }
