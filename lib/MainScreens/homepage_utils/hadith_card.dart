@@ -101,6 +101,12 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
                     ),
                   ),
                 ),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.star_outline,
+                      size: 32,
+                    ))
               ],
             ),
             const SizedBox(height: 15),

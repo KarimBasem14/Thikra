@@ -156,7 +156,7 @@ class NotificationService {
         "enableDailyNotifications was called with dailyNotificationsEnabled set to $dailyNotificationsEnabled");
     if (enable) {
       print("Now calling scheduleDailyNotifications()");
-      scheduleDailyNotifications();
+      await scheduleDailyNotifications();
     } else {
       await flutterLocalNotificationsPlugin.cancelAll();
     }

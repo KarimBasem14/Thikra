@@ -1,3 +1,5 @@
+import 'dart:developer' show log;
+
 import 'package:flutter/material.dart';
 import 'package:muslim_azkar/api/notificationapi.dart';
 
@@ -53,11 +55,11 @@ class _SettingsState extends State<Settings> {
         isNotificationsEnabled = value;
         if (value == false) {
           NotificationService.enableDailyNotifications(false);
-          print("Notifications disabled");
+          log("Notifications disabled");
         } else {
           enableNotifications();
           NotificationService.sendNotification('تم تشغيل الإشعارات', '');
-          print("Notifications Enabled");
+          log("Notifications Enabled");
         }
       }
 
@@ -67,7 +69,6 @@ class _SettingsState extends State<Settings> {
         } else if (value == false) {
         } else {}
       }
-      ;
     });
   }
 
@@ -81,16 +82,16 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    print("Morning time is $morningTime");
-    print("Night time is $nightTime");
+    // log("Morning time is $morningTime");
+    // log("Night time is $nightTime");
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        title: Align(
-          alignment: Alignment.topRight,
-          child: Text(
-            "الإعدادات",
-            style: Theme.of(context).appBarTheme.titleTextStyle,
-          ),
+        centerTitle: true,
+        title: Text(
+          "الإعدادات",
+          style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
       ),
       body: Container(
@@ -108,6 +109,8 @@ class _SettingsState extends State<Settings> {
               child: Column(
                 children: [
                   SwitchListTile(
+                    activeTrackColor:
+                        Theme.of(context).appBarTheme.backgroundColor,
                     controlAffinity: ListTileControlAffinity.leading,
                     title: const Text(
                       "تفعيل التنبيهات",
@@ -158,6 +161,8 @@ class _SettingsState extends State<Settings> {
                             "${nightTime!.hour.toString().padLeft(2, '0')}:${nightTime!.minute.toString().padLeft(2, '0')}")),
                   ),
                   SwitchListTile(
+                    activeTrackColor:
+                        Theme.of(context).appBarTheme.backgroundColor,
                     controlAffinity: ListTileControlAffinity.leading,
                     title: const Text(
                       "تفعيل الأهتزاز عند القراءة",
