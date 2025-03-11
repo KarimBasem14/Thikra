@@ -1,11 +1,13 @@
-// ignore_for_file: avoid_print, constant_identifier_names, non_constant_identifier_names
+// ignore_for_file:  constant_identifier_names, non_constant_identifier_names
+
+import 'dart:developer' show log;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 
-class NotificationService {
+class NotificationService2 {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -36,7 +38,7 @@ class NotificationService {
 
   static Future<void> onDidReceiveNotification(
       NotificationResponse notificationResponse) async {
-    print("Notification received: ${notificationResponse.payload}");
+    log("Notification received: ${notificationResponse.payload}");
   }
 
   static Future<void> init() async {
@@ -59,7 +61,7 @@ class NotificationService {
       onDidReceiveNotificationResponse: onDidReceiveNotification,
     );
 
-    print("Notifications Initialized: $initialized");
+    log("Notifications Initialized: $initialized");
 
     // Request permission for iOS
     // if (initialized != null && initialized) {
@@ -88,7 +90,7 @@ class NotificationService {
 
   static Future<void> scheduleNotification(
       int id, String title, String body, DateTime scheduledTime) async {
-    print("Call to sheduleNotification was successful");
+    log("Call to sheduleNotification was successful");
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
@@ -109,7 +111,7 @@ class NotificationService {
       // androidAllowWhileIdle: true,
       matchDateTimeComponents: DateTimeComponents.time,
     );
-    print("Reached end of sheduleNotification");
+    log("Reached end of sheduleNotification");
   }
 
   static Future<void> scheduleDailyNotifications() async {
@@ -120,7 +122,7 @@ class NotificationService {
     NIGHT_HOUR = prefs.getInt('night_hour') ?? 17;
     NIGHT_MINUTE = prefs.getInt('night_minute') ?? 00;
 
-    print("Call to scheduleDailyNotifications() was succefful.");
+    log("Call to scheduleDailyNotifications() was succefful.");
     if (!dailyNotificationsEnabled) {
       return;
     }
@@ -130,9 +132,9 @@ class NotificationService {
         DateTime(now.year, now.month, now.day, MORNING_HOUR, MORNING_MINUTE);
     final nightTime =
         DateTime(now.year, now.month, now.day, NIGHT_HOUR, NIGHT_MINUTE);
-    print("Morning time is $morningTime");
-    print("Night time is $nightTime");
-    print("Now calling sheduleNotification on morning and night time");
+    log("Morning time is $morningTime");
+    log("Night time is $nightTime");
+    log("Now calling sheduleNotification on morning and night time");
     await scheduleNotification(
         1,
         "حان وقت أذكار الصباح",
@@ -152,10 +154,9 @@ class NotificationService {
 
   static Future<void> enableDailyNotifications(bool enable) async {
     dailyNotificationsEnabled = enable;
-    print(
-        "enableDailyNotifications was called with dailyNotificationsEnabled set to $dailyNotificationsEnabled");
+    log("enableDailyNotifications was called with dailyNotificationsEnabled set to $dailyNotificationsEnabled");
     if (enable) {
-      print("Now calling scheduleDailyNotifications()");
+      log("Now calling scheduleDailyNotifications()");
       await scheduleDailyNotifications();
     } else {
       await flutterLocalNotificationsPlugin.cancelAll();

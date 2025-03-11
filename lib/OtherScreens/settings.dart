@@ -1,7 +1,7 @@
 import 'dart:developer' show log;
 
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/api/notificationapi.dart';
+import 'package:muslim_azkar/api/notificationapiv2.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -26,10 +26,11 @@ class _SettingsState extends State<Settings> {
     // Initialize time zone datas
     tz.initializeTimeZones(); // This is a very important line, without it the NotificationService's sheduleNotification method raises a late initialization error
 
-    await NotificationService.init(); // Initalize the NotificationService
+    await NotificationService
+        .initServiceSettings(); // Initalize the NotificationService
 
-    NotificationService.enableDailyNotifications(
-        true); // Enables Notifications to be repeated on a daily basis
+    NotificationService
+        .enableDailyNotifications(); // Enables Notifications to be repeated on a daily basis
   }
 
   @override
@@ -50,19 +51,28 @@ class _SettingsState extends State<Settings> {
   Future<void> updatePreference(String key, bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(key, value);
-    setState(() {
-      if (key == 'isNotificationsEnabled') {
-        isNotificationsEnabled = value;
-        if (value == false) {
-          NotificationService.enableDailyNotifications(false);
-          log("Notifications disabled");
-        } else {
+
+    if (key == 'isNotificationsEnabled') {
+      isNotificationsEnabled = value;
+      if (value == false) {
+        NotificationService.disableDailyNotifications();
+        log("Notifications disabled");
+      } else {
+        bool permissions = await NotificationService.requestPermissions();
+        log(
+            permissions
+                ? "Notification permissions granted"
+                : "Notification permissions not granted",
+            name: "Settings Page");
+        if (permissions) {
           enableNotifications();
           NotificationService.sendNotification('تم تشغيل الإشعارات', '');
-          log("Notifications Enabled");
+          log("Notifications Enabled", name: "Settings Page");
         }
       }
+    }
 
+    setState(() {
       if (key == 'isVibrationsEnabled') {
         isVibrationsEnabled = value;
         if (value == true) {
@@ -84,8 +94,6 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     // log("Morning time is $morningTime");
     // log("Night time is $nightTime");
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
