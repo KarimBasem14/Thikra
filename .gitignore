@@ -1,4 +1,5 @@
 *
+!*/
 !*.dart
 !pubspec.yaml
 !*.png
@@ -41,6 +42,7 @@ migrate_working_dir/
 /macos/
 /windows/
 /web/
+android/app/.cxx/
 
 # Symbolication related
 app.*.symbols
