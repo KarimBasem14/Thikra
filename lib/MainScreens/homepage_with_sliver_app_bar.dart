@@ -21,8 +21,7 @@ class HomepageWithSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isNight = now.hour < 4 || now.hour > 16;
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     final List<List> wrdCardsInfo = [
       [

@@ -1,9 +1,10 @@
 // ignore_for_file: unused_import, non_constant_identifier_names
 
 import 'dart:developer' show log;
-
+import 'dart:math' show Random;
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:muslim_azkar/data/duas.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz show initializeTimeZones;
@@ -172,6 +173,24 @@ class NotificationService {
             : nightTime);
     log("Schedeuled Night Azkar on : ${nightTime.hour}:${nightTime.minute}",
         name: "NotificationService");
+
+    DateTime duaTime = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      (MORNING_HOUR + NIGHT_HOUR) ~/ 2,
+      (MORNING_MINUTE + NIGHT_MINUTE) ~/ 2,
+    );
+    String dua = dailyDuas[Random().nextInt(dailyDuas
+        .length)]; // I personally think this shouldn't be updated with each time the notification is sent, but it does update-which is the desired behaviour- i don't know why though, but it works ig ¯\_(ツ)_/¯
+
+    await scheduleNotification(3, "", dua, duaTime);
+    log("Scheduled dua on ${duaTime.hour}:${duaTime.minute}",
+        name: "NotificationService");
+
+    prefs.setString("dailyDua",
+        dua); // This is a future but i don't think i have to await it
+    log("Updated dailyDua to $dua");
   }
 
   static Future<void> enableDailyNotifications() async {

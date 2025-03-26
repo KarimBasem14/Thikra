@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:muslim_azkar/MainScreens/dua_text_in_app_bar.dart';
 import 'package:muslim_azkar/MainScreens/homepage_utils/clipper_appbar.dart';
 import 'package:muslim_azkar/theme/theme.dart'
     show darkThemeGradient, lightThemeGradient;
@@ -9,8 +10,6 @@ class MainSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return SliverPadding(
       padding: const EdgeInsets.only(bottom: 10),
       sliver: SliverAppBar(
@@ -31,7 +30,19 @@ class MainSliverAppBar extends StatelessWidget {
               clipper: BackgroundWaveClipper(),
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: isDarkMode ? darkThemeGradient : lightThemeGradient,
+                  gradient: Theme.of(context).brightness == Brightness.dark
+                      ? darkThemeGradient
+                      : lightThemeGradient,
+                ),
+                child: const SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 64.0),
+                    child: Column(
+                      children: [
+                        DuaTextInAppBar(),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             )),

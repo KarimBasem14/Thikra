@@ -16,8 +16,7 @@ class WrdCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       // height: 40,
       child: InkWell(

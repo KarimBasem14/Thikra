@@ -21,20 +21,19 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    // bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     navBarItems = [
       const CurvedNavigationBarItem(
           child: Icon(Icons.settings), label: "الإعدادات"),
-      CurvedNavigationBarItem(
-        child: ImageIcon(
-          const AssetImage(
-              r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\love.png"),
-          size: 32,
-          color: isDarkMode ? Colors.white : Colors.black,
-        ),
-        label: "دعم",
-      ),
+      // CurvedNavigationBarItem(
+      //   child: ImageIcon(
+      //     const AssetImage(
+      //         r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\love.png"),
+      //     size: 32,
+      //     color: isDarkMode ? Colors.white : Colors.black,
+      //   ),
+      //   label: "دعم",
+      // ),
       const CurvedNavigationBarItem(
         child: Icon(Icons.home_outlined, size: 30),
         label: "الصفحة الرئيسية",

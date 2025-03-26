@@ -81,7 +81,7 @@ class _AzkarNotificationsSettingsCardState
             activeTrackColor: Theme.of(context).appBarTheme.backgroundColor,
             controlAffinity: ListTileControlAffinity.leading,
             title: const Text(
-              "تفعيل التنبيهات",
+              "اشعارات الأذكار",
               textAlign: TextAlign.right,
             ),
             value: isNotificationsEnabled,
@@ -93,16 +93,20 @@ class _AzkarNotificationsSettingsCardState
                       context: context, initialTime: morningTime!) ??
                   morningTime;
               setState(() {});
-              await NotificationService.enableDailyNotifications();
+
               if (morningTime != null) {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 prefs.setInt('morning_hour', morningTime!.hour);
                 prefs.setInt('morning_minute', morningTime!.minute);
               }
+              await NotificationService.enableDailyNotifications();
               print(morningTime);
             },
             child: ListTile(
-                trailing: const Text(" وقت أذكار الصباح"),
+                trailing: const Text(
+                  " وقت أذكار الصباح",
+                  style: TextStyle(fontSize: 15),
+                ),
                 leading: Text(
                     "${morningTime!.hour.toString().padLeft(2, '0')}:${morningTime!.minute.toString().padLeft(2, '0')}")),
           ),
@@ -112,16 +116,20 @@ class _AzkarNotificationsSettingsCardState
                       context: context, initialTime: nightTime!) ??
                   nightTime;
               setState(() {});
-              await NotificationService.enableDailyNotifications();
+
               if (nightTime != null) {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 prefs.setInt('night_hour', nightTime!.hour);
                 prefs.setInt('night_minute', nightTime!.minute);
               }
+              await NotificationService.enableDailyNotifications();
               print(nightTime);
             },
             child: ListTile(
-                trailing: const Text(" وقت أذكار المساء"),
+                trailing: const Text(
+                  " وقت أذكار المساء",
+                  style: TextStyle(fontSize: 15),
+                ),
                 leading: Text(
                     "${nightTime!.hour.toString().padLeft(2, '0')}:${nightTime!.minute.toString().padLeft(2, '0')}")),
           ),

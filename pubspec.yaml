@@ -42,6 +42,7 @@ dependencies:
   google_fonts: ^6.2.1
   curved_labeled_navigation_bar: ^2.0.6
   permission_handler: ^11.4.0
+  adaptive_theme: ^3.7.0
   
   
 

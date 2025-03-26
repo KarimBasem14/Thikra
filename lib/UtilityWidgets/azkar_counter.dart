@@ -29,7 +29,7 @@ class _AzkarCounterState extends State<AzkarCounter> {
         widget.count--;
       });
     }
-    // Want to add that it slides to the right or left if _counter reaches 0
+    //it slides to the right or left if _counter reaches 0
     if (widget.count == 0) {
       setState(() {
         widget.removeItem!(widget.index!);
@@ -38,19 +38,19 @@ class _AzkarCounterState extends State<AzkarCounter> {
     }
   }
 
-  double textSize = 25;
+  double textSize = 20;
+  double tileHeight = 35;
   // double tileHeight = 220;
   @override
   Widget build(BuildContext context) {
     final double tileWidth = MediaQuery.of(context).size.width;
     // final double tileHeight = MediaQuery.of(context).size.height;
-    var brightness = MediaQuery.of(context).platformBrightness;
-    final bool isDarkMode = brightness == Brightness.dark;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final Color tileColor = Theme.of(context).cardColor;
     // print(tileHeight);
     return Stack(clipBehavior: Clip.hardEdge, children: [
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: InkWell(
           onTap: decrementCounter,
           child: ConstrainedBox(
@@ -61,7 +61,7 @@ class _AzkarCounterState extends State<AzkarCounter> {
                 color: tileColor,
                 child: Padding(
                   padding:
-                      const EdgeInsets.all(30), // Between text and card border
+                      const EdgeInsets.all(60), // Between text and card border
                   child: Center(
                     child: Text(
                       widget.text,
@@ -81,6 +81,7 @@ class _AzkarCounterState extends State<AzkarCounter> {
           child: Card(
             color: isDarkMode ? Colors.black : Colors.brown.shade300,
             child: SizedBox(
+              height: tileHeight,
               width: tileWidth / 1.5,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -27,28 +27,37 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
       color: Colors.white,
       fontSize: 30,
     ),
+    toolbarTextStyle: const TextStyle(
+      color: Colors.white70,
+      fontSize: 15,
+    ),
   ),
 );
 
 ThemeData lightTheme = ThemeData().copyWith(
-    canvasColor: const Color.fromARGB(255, 228, 197, 122),
-    scaffoldBackgroundColor: const Color.fromRGBO(253, 245, 226, 1),
-    cardColor: const Color.fromRGBO(255, 214, 164, 0.7),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData().copyWith(
-      backgroundColor: const Color.fromRGBO(253, 245, 226, 1),
-      selectedItemColor: const Color.fromRGBO(253, 245, 226, 1),
-      selectedIconTheme: IconThemeData(
-        color: Colors.blue[200],
-      ),
+  canvasColor: const Color.fromARGB(255, 228, 197, 122),
+  scaffoldBackgroundColor: const Color.fromRGBO(253, 245, 226, 1),
+  cardColor: const Color.fromRGBO(255, 214, 164, 0.7),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData().copyWith(
+    backgroundColor: const Color.fromRGBO(253, 245, 226, 1),
+    selectedItemColor: const Color.fromRGBO(253, 245, 226, 1),
+    selectedIconTheme: IconThemeData(
+      color: Colors.blue[200],
     ),
-    appBarTheme: const AppBarTheme().copyWith(
-      // backgroundColor: Colors.amber.shade100,
-      backgroundColor: const Color(0xFFC7885D),
-      titleTextStyle: const TextStyle(
-        color: Colors.black54,
-        fontSize: 30,
-      ),
-    ));
+  ),
+  appBarTheme: const AppBarTheme().copyWith(
+    // backgroundColor: Colors.amber.shade100,
+    backgroundColor: const Color(0xFFC7885D),
+    titleTextStyle: const TextStyle(
+      color: Colors.black54,
+      fontSize: 30,
+    ),
+    toolbarTextStyle: const TextStyle(
+      color: Colors.black87,
+      fontSize: 15,
+    ),
+  ),
+);
 
 LinearGradient darkThemeGradient = const LinearGradient(
   colors: [
