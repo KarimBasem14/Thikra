@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import 'package:muslim_azkar/UtilityWidgets/about_card.dart';
 import 'package:muslim_azkar/UtilityWidgets/azkar_notifications_settings.dart';
 import 'package:muslim_azkar/UtilityWidgets/mazhar_settings_card.dart';
+import 'package:muslim_azkar/UtilityWidgets/text_size_settings_card.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -24,6 +25,15 @@ class Settings extends StatelessWidget {
         margin: const EdgeInsets.all(15),
         child: ListView(
           children: [
+            Container(
+              margin: const EdgeInsets.only(right: 10, bottom: 10, top: 5),
+              child: const Text(
+                "الخط",
+                textAlign: TextAlign.right,
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            const TextSizeSettingsCard(),
             Container(
               margin: const EdgeInsets.only(right: 10, bottom: 10, top: 5),
               child: const Text(
