@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_azkar/MainScreens/homepage_utils/asma2_hosna.dart';
 import 'package:muslim_azkar/MainScreens/homepage_utils/hadith_card.dart';
-import 'package:muslim_azkar/MainScreens/homepage_utils/top_main_card.dart';
-import 'package:muslim_azkar/MainScreens/homepage_utils/wrd_card.dart';
-import 'package:muslim_azkar/MainScreens/main_sliver_app_bar.dart';
-import 'package:muslim_azkar/OtherScreens/azkar_masa2.dart';
-import 'package:muslim_azkar/OtherScreens/azkar_sabah.dart';
-import 'package:muslim_azkar/OtherScreens/other_azkar.dart';
-import 'package:muslim_azkar/OtherScreens/tasbih.dart';
+import 'package:muslim_azkar/MainScreens/homepage_utils/top_main_card.dart'
+    show TopMainCard;
+import 'package:muslim_azkar/MainScreens/homepage_utils/wrd_card.dart'
+    show WrdCard;
+import 'package:muslim_azkar/MainScreens/main_sliver_app_bar.dart'
+    show MainSliverAppBar;
+import 'package:muslim_azkar/OtherScreens/azkar_masa2.dart' show AzkarMasa2;
+import 'package:muslim_azkar/OtherScreens/azkar_sabah.dart' show AzkarSabah;
+import 'package:muslim_azkar/OtherScreens/other_azkar.dart' show OtherAzkar;
+import 'package:muslim_azkar/OtherScreens/tasbih.dart' show Tasbih;
 
 class HomepageWithSliverAppBar extends StatelessWidget {
   HomepageWithSliverAppBar({super.key});
   final DateTime now = DateTime.now();
   final List wrdCardPages = [
-    AzkarMasa2(),
-    AzkarSabah(),
+    const AzkarMasa2(),
+    const AzkarSabah(),
     const OtherAzkar(),
     const Tasbih(),
   ];

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,6 +46,8 @@ class _TextSizeSettingsCardState extends State<TextSizeSettingsCard> {
             ),
           ),
           Slider(
+            thumbColor: Theme.of(context).appBarTheme.backgroundColor,
+            activeColor: Theme.of(context).appBarTheme.backgroundColor,
             min: 16,
             max: 35,
             value: textSize,

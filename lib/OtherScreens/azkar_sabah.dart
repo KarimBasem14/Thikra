@@ -1,15 +1,30 @@
-import 'package:muslim_azkar/utilityWidgets/azkar_counter.dart';
+import 'package:muslim_azkar/UtilityWidgets/azkar_counter.dart'
+    show AzkarCounter;
 import 'package:muslim_azkar/data/azkar.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
-class AzkarSabah extends StatelessWidget {
-  AzkarSabah({super.key});
+class AzkarSabah extends StatefulWidget {
+  const AzkarSabah({super.key});
 
+  @override
+  State<AzkarSabah> createState() => _AzkarSabahState();
+}
+
+class _AzkarSabahState extends State<AzkarSabah> {
   // List<Zikr> azkar_sabah= azkarsabah;
   final azkarSabahListKey = GlobalKey<AnimatedListState>();
 
+  double textSize = 20;
+
   List<Zikr> _azkarsabah = [];
+
+  Future<void> getTextSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    textSize = prefs.getDouble("textSize") ?? 20;
+    setState(() {});
+  }
 
   void removeitem(int index) {
     final removedItem = _azkarsabah[index]; // Save the item being removed
@@ -25,6 +40,7 @@ class AzkarSabah extends StatelessWidget {
           child: AzkarCounter(
             text: removedItem.text,
             count: removedItem.count,
+            textSize: textSize,
             removeItem: removeitem,
             index: index,
           ),
@@ -36,6 +52,12 @@ class AzkarSabah extends StatelessWidget {
     // Remove the item from the list after the animation completes
 
     _azkarsabah.removeAt(index);
+  }
+
+  @override
+  void initState() {
+    getTextSize();
+    super.initState();
   }
 
   @override
@@ -63,6 +85,7 @@ class AzkarSabah extends StatelessWidget {
             return AzkarCounter(
               text: _azkarsabah[i].text,
               count: _azkarsabah[i].count,
+              textSize: textSize,
               removeItem: removeitem,
               index: i,
             );

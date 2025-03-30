@@ -6,14 +6,16 @@ import 'package:flutter/services.dart';
 class AzkarCounter extends StatefulWidget {
   final String text;
   final Function? removeItem;
+  double? textSize;
   int count;
   final int? index;
   AzkarCounter({
     super.key,
     required this.text,
     required this.count,
-    Function? this.removeItem,
-    int? this.index,
+    this.textSize, // Default value 20
+    this.removeItem,
+    this.index,
   });
   @override
   State<AzkarCounter> createState() => _AzkarCounterState();
@@ -38,11 +40,13 @@ class _AzkarCounterState extends State<AzkarCounter> {
     }
   }
 
-  double textSize = 20;
   double tileHeight = 35;
   // double tileHeight = 220;
   @override
   Widget build(BuildContext context) {
+    if (widget.textSize == null) {
+      widget.textSize = 20;
+    }
     final double tileWidth = MediaQuery.of(context).size.width;
     // final double tileHeight = MediaQuery.of(context).size.height;
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -66,7 +70,7 @@ class _AzkarCounterState extends State<AzkarCounter> {
                     child: Text(
                       widget.text,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: textSize),
+                      style: TextStyle(fontSize: widget.textSize),
                     ),
                   ),
                 )),
