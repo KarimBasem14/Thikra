@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:muslim_azkar/MainScreens/dua_text_in_app_bar.dart';
+import 'package:muslim_azkar/MainScreens/dua_text_in_app_bar.dart'
+    show DuaTextInAppBar;
 import 'package:muslim_azkar/MainScreens/homepage_utils/clipper_appbar.dart';
 import 'package:muslim_azkar/theme/theme.dart'
     show darkThemeGradient, lightThemeGradient;

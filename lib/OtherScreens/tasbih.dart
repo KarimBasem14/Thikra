@@ -30,7 +30,7 @@ class _TasbihState extends State<Tasbih> {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.fromLTRB(70, 50, 70, 150),
+            margin: const EdgeInsets.fromLTRB(70, 50, 70, 130),
             alignment: Alignment.topCenter,
             decoration:
                 BoxDecoration(border: Border.all(color: Colors.black54)),
@@ -39,7 +39,7 @@ class _TasbihState extends State<Tasbih> {
               style: const TextStyle(fontSize: 50),
             ),
           ),
-          InkWell(
+          GestureDetector(
             onTap: incrementcount,
             child: Container(
               margin: const EdgeInsets.only(bottom: 20),
@@ -51,9 +51,18 @@ class _TasbihState extends State<Tasbih> {
               ),
             ),
           ),
-          ElevatedButton(
-            child: const Text("أعد العد من الصفر"),
-            onPressed: () {
+          GestureDetector(
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).appBarTheme.backgroundColor,
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(20),
+                child: Icon(Icons.replay),
+              ),
+            ),
+            onTap: () {
               setState(() {
                 count = 0;
               });

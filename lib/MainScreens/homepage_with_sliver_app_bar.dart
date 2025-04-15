@@ -18,7 +18,7 @@ class HomepageWithSliverAppBar extends StatelessWidget {
   final List wrdCardPages = [
     const AzkarMasa2(),
     const AzkarSabah(),
-    const OtherAzkar(),
+    OtherAzkar(),
     const Tasbih(),
   ];
   @override
@@ -31,17 +31,17 @@ class HomepageWithSliverAppBar extends StatelessWidget {
         "ورد المساء",
         Icon(Icons.dark_mode_rounded,
             color: isDarkMode ? Colors.white : Colors.black),
-        isDarkMode ? Colors.deepPurple : Colors.teal.shade400
+        Color(0xFF3F51B5)
       ],
       [
         "ورد الصباح",
         Icon(Icons.light_mode, color: isDarkMode ? Colors.white : Colors.black),
-        isDarkMode ? Colors.orangeAccent : Colors.orange.shade200
+        Colors.orangeAccent,
       ],
       [
         "أذكار متنوعة",
         Icon(Icons.book, color: isDarkMode ? Colors.white : Colors.black),
-        Colors.lightBlue
+        const Color(0xFF5DADE2)
       ],
       [
         "تسبيح",
@@ -49,7 +49,7 @@ class HomepageWithSliverAppBar extends StatelessWidget {
             const AssetImage(
                 r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png"),
             color: isDarkMode ? Colors.white : Colors.black),
-        isDarkMode ? Colors.blue.shade900 : Colors.blue.shade200
+        Colors.blue.shade900
       ]
     ];
 

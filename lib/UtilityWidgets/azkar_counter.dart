@@ -9,6 +9,7 @@ class AzkarCounter extends StatefulWidget {
   double? textSize;
   int count;
   final int? index;
+  final String? footnote;
   AzkarCounter({
     super.key,
     required this.text,
@@ -16,6 +17,7 @@ class AzkarCounter extends StatefulWidget {
     this.textSize, // Default value 20
     this.removeItem,
     this.index,
+    this.footnote,
   });
   @override
   State<AzkarCounter> createState() => _AzkarCounterState();
@@ -32,7 +34,7 @@ class _AzkarCounterState extends State<AzkarCounter> {
       });
     }
     //it slides to the right or left if _counter reaches 0
-    if (widget.count == 0) {
+    if (widget.count == 0 && widget.removeItem != null) {
       setState(() {
         widget.removeItem!(widget.index!);
         print("Item ${widget.index} removed");
@@ -67,10 +69,24 @@ class _AzkarCounterState extends State<AzkarCounter> {
                   padding:
                       const EdgeInsets.all(60), // Between text and card border
                   child: Center(
-                    child: Text(
-                      widget.text,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: widget.textSize),
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.text,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: widget.textSize),
+                        ),
+                        if (widget.footnote != null) ...[
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          const Text(
+                            "footnote",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ]
+                      ],
                     ),
                   ),
                 )),

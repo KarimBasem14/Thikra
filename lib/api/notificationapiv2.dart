@@ -66,6 +66,7 @@ class NotificationService {
   }
 
   static Future<void> init() async {
+    log("enableNotifications called from main");
     await NotificationService
         .initServiceSettings(); // Initalize the NotificationService
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -77,11 +78,9 @@ class NotificationService {
       } else {
         prefs.setBool("isNotificationsEnabled", false);
       }
-
-      log("enableNotifications called from main");
     } else if (prefs.getBool('isNotificationsEnabled')!) {
       await enableDailyNotifications();
-      log("enableNotifications called from main");
+      log("Notifications were successfully enabled");
     } else {
       await NotificationService.disableDailyNotifications();
     }
