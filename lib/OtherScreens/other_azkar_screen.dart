@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import 'package:muslim_azkar/UtilityWidgets/azkar_counter.dart';
 import 'package:muslim_azkar/data/other_azkars_title.dart';
 
+// ignore: must_be_immutable
 class OtherAzkarScreen extends StatelessWidget {
   final String title;
   OtherAzkarScreen({super.key, required this.title});
@@ -55,6 +56,9 @@ class OtherAzkarScreen extends StatelessWidget {
             title: Text(
               title,
               style: GoogleFonts.kufam(),
+              textAlign: title == "المقدمة" || title == "فضل الذكر"
+                  ? TextAlign.right
+                  : TextAlign.center,
             ),
           ),
           body: SingleChildScrollView(

@@ -1,7 +1,10 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:muslim_azkar/OtherScreens/hadith_explanation.dart';
+import 'package:muslim_azkar/api/favoriteHadithBox.dart' show favoriteHadithBox;
+import 'package:muslim_azkar/data/hadiths.dart' show hadithsWithExplanation;
 import 'package:share_plus/share_plus.dart';
 
 class HadithCard extends StatefulWidget {
@@ -13,59 +16,74 @@ class HadithCard extends StatefulWidget {
 
 class _HadithCardState extends State<HadithCard> {
   List<dynamic>? hadiths;
-  String? currentHadith;
+  int currentIndex = 0;
+  String currentHadith = "";
+  String sharh = "";
 
   @override
   void initState() {
     super.initState();
-    loadDataOnStart();
+    currentIndex = Random().nextInt(hadithsWithExplanation["hadith"].length);
+    currentHadith =
+        hadithsWithExplanation["hadith"][currentIndex]["arabicText"];
+    sharh = hadithsWithExplanation["hadith"][currentIndex]["arabicExplanation"];
+    // loadDataOnStart();
   }
 
-  Future<void> loadDataOnStart() async {
-    final String response = await rootBundle.loadString(
-        r'D:\Code\Flutter\muslim_azkar\lib\data\riyad_alsalhin.json');
-    final data = json.decode(response);
-    setState(() {
-      hadiths = data['hadiths'];
-      updateHadith();
-    });
-  }
+  // Future<void> loadDataOnStart() async {
+  //   final String response = await rootBundle.loadString(
+  //       r'D:\Code\Flutter\muslim_azkar\lib\data\riyad_alsalhin.json');
+  //   final data = json.decode(response);
+  //   setState(() {
+  //     hadiths = data['hadiths'];
+  //     updateHadith();
+  //   });
+  // }
 
   void updateHadith() {
-    if (hadiths != null && hadiths!.isNotEmpty) {
-      int randomIndex = Random().nextInt(hadiths!.length);
-      setState(() {
-        currentHadith = hadiths![randomIndex]['arabic'];
-      });
-    }
+    currentIndex = Random().nextInt(hadithsWithExplanation["hadith"].length);
+    setState(() {
+      currentHadith =
+          hadithsWithExplanation["hadith"][currentIndex]["arabicText"];
+    });
+    sharh = hadithsWithExplanation["hadith"][currentIndex]["arabicExplanation"];
   }
 
   @override
   Widget build(BuildContext context) {
-    if (hadiths == null) {
-      return const HadithCardWithDataRetrieved(hadith: "hadith", loading: true);
-    }
-
     return HadithCardWithDataRetrieved(
-      hadith: currentHadith ?? 'جارٍ التحميل...',
+      hadith: currentHadith,
+      index: currentIndex,
+      sharh: sharh,
       loading: false,
       onPressFunction: updateHadith,
     );
   }
 }
 
-class HadithCardWithDataRetrieved extends StatelessWidget {
+class HadithCardWithDataRetrieved extends StatefulWidget {
   const HadithCardWithDataRetrieved({
     super.key,
     required this.hadith,
+    required this.index,
+    required this.sharh,
     required this.loading,
     this.onPressFunction,
   });
 
   final String hadith;
+  final String sharh;
+  final int index;
   final VoidCallback? onPressFunction;
   final bool loading;
 
+  @override
+  State<HadithCardWithDataRetrieved> createState() =>
+      _HadithCardWithDataRetrievedState();
+}
+
+class _HadithCardWithDataRetrievedState
+    extends State<HadithCardWithDataRetrieved> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -79,7 +97,7 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () async {
-                      await Share.share(hadith);
+                      await Share.share(widget.hadith);
                     },
                     icon: const Icon(
                       Icons.share,
@@ -101,20 +119,15 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.star_outline,
-                      size: 32,
-                    ))
+                StarButton(index: widget.index)
               ],
             ),
             const SizedBox(height: 15),
             Center(
-              child: loading
+              child: widget.loading
                   ? const CircularProgressIndicator()
                   : Text(
-                      hadith,
+                      widget.hadith,
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .appBarTheme
@@ -129,12 +142,19 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
               children: [
                 IconButton(
                   tooltip: "عرض شرح الحديث",
-                  onPressed: () {},
-                  icon: const Icon(Icons.web_sharp),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            HadithExplanationPage(sharh: widget.sharh),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.info_outline_rounded),
                 ),
                 IconButton(
                   tooltip: "اختيار حديث اخر",
-                  onPressed: onPressFunction,
+                  onPressed: widget.onPressFunction,
                   icon: const Icon(Icons.replay_outlined),
                 ),
               ],
@@ -142,6 +162,65 @@ class HadithCardWithDataRetrieved extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+void addToFavourite(int index) {
+  int ID = index; // The hadith's ID in the box is its index from the map
+  favoriteHadithBox.put(ID, ID);
+}
+
+bool isFavourite(int index) {
+  // Checks if a hadith is favorited or not.
+  int ID = index; // The hadith's ID in the box is its index from the map
+  return favoriteHadithBox.containsKey(ID);
+}
+
+void removeFavourite(int index) {
+  int ID = index;
+  favoriteHadithBox.delete(ID);
+}
+
+class StarButton extends StatefulWidget {
+  final int index;
+  const StarButton({super.key, required this.index});
+
+  @override
+  State<StarButton> createState() => _StarButtonState();
+}
+
+class _StarButtonState extends State<StarButton> {
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      // Listen to changes in the favoriteHadithBox using Hive.box().listenable()
+      valueListenable: Hive.box('favoriteHadithBox').listenable(),
+      builder: (ctx, Box box, _) {
+        bool isFavorite = isFavourite(widget.index);
+        return IconButton(
+            onPressed: () {
+              if (isFavorite) {
+                removeFavourite(widget.index);
+              } else {
+                addToFavourite(widget.index);
+              }
+
+              setState(() {});
+            },
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 100),
+              child: Icon(
+                isFavorite ? Icons.star : Icons.star_outline,
+                size: 32,
+                key: ValueKey<bool>(isFavorite), // Very important
+              ),
+              transitionBuilder: (child, animation) => RotationTransition(
+                turns: animation,
+                child: child,
+              ),
+            ));
+      },
     );
   }
 }

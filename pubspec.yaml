@@ -43,13 +43,14 @@ dependencies:
   curved_labeled_navigation_bar: ^2.0.6
   permission_handler: ^11.4.0
   adaptive_theme: ^3.7.0
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
   
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -75,7 +76,6 @@ flutter:
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\love.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\book.png
-    - D:\Code\Flutter\muslim_azkar\lib\data\riyad_alsalhin.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

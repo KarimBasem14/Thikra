@@ -3,8 +3,10 @@
 import 'dart:developer';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:muslim_azkar/MainScreens/root.dart';
 import 'package:flutter/material.dart';
+import 'package:muslim_azkar/api/favoriteHadithBox.dart' show favoriteHadithBox;
 import 'package:muslim_azkar/api/notificationapi.dart';
 import 'package:muslim_azkar/api/notificationapiv2.dart';
 import 'package:muslim_azkar/theme/theme.dart';
@@ -14,6 +16,8 @@ import 'package:timezone/data/latest.dart' as tz;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.init();
+  await Hive.initFlutter();
+  favoriteHadithBox = await Hive.openBox("favoriteHadithBox");
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   runApp(MyApp(
     savedThemeMode: savedThemeMode,

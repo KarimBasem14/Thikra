@@ -6,7 +6,7 @@ import 'package:muslim_azkar/data/other_azkars_title.dart';
 class OtherAzkar extends StatelessWidget {
   OtherAzkar({super.key});
 
-  List otherAzkarList = otherAzkarMap.keys.toList();
+  final List otherAzkarList = otherAzkarMap.keys.toList();
 
   @override
   Widget build(BuildContext context) {
