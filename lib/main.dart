@@ -4,14 +4,15 @@ import 'dart:developer';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:muslim_azkar/MainScreens/root.dart';
+
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/api/favoriteHadithBox.dart' show favoriteHadithBox;
-import 'package:muslim_azkar/api/notificationapi.dart';
-import 'package:muslim_azkar/api/notificationapiv2.dart';
-import 'package:muslim_azkar/theme/theme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:muslim_azkar/Api/favoriteHadithBox.dart' show favoriteHadithBox;
+import 'package:muslim_azkar/root.dart' show Root;
+import 'package:muslim_azkar/theme.dart' show darkTheme, lightTheme;
+
 import 'package:timezone/data/latest.dart' as tz;
+
+import 'Api/notificationapi.dart' show NotificationService;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

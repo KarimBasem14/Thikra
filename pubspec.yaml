@@ -74,8 +74,6 @@ flutter:
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\sun.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\night.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png
-    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\love.png
-    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\book.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
