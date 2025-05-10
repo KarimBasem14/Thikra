@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
+import 'package:muslim_azkar/Widgets/UtilityWidgets/star_button.dart'
+    show StarButton;
 import 'package:share_plus/share_plus.dart' show Share;
 
 class OtherAzkarCard extends StatelessWidget {
   final String zikr;
   final double fontSize;
-  const OtherAzkarCard({super.key, required this.zikr, required this.fontSize});
+  final String? reference;
+  final String? hiveName;
+  final int? id;
+  const OtherAzkarCard(
+      {super.key,
+      required this.zikr,
+      required this.fontSize,
+      this.reference,
+      this.hiveName,
+      this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +57,14 @@ class OtherAzkarCard extends StatelessWidget {
                         },
                         icon: const Icon(Icons.share),
                       ),
+                      // IconButton(
+                      //   onPressed: () {
+                      //     Share.share(zikr);
+                      //   },
+                      //   icon: const Icon(Icons.star_border_outlined),
+                      // ),
+                      if (hiveName != null && id != null)
+                        StarButton(hiveName: hiveName!, index: id!)
                     ],
                   ),
                   Text(
@@ -56,8 +75,16 @@ class OtherAzkarCard extends StatelessWidget {
                     ),
                     textAlign: TextAlign.right,
                   ),
+                  Text(
+                    reference ?? "",
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontSize: fontSize,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

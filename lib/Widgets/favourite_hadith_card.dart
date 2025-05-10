@@ -23,6 +23,7 @@ class FavouriteHadithCard extends StatelessWidget {
             Center(
               child: Text(
                 hadith,
+                textDirection: TextDirection.rtl,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).appBarTheme.titleTextStyle!.copyWith(
                       fontSize: 25,

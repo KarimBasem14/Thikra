@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:muslim_azkar/Widgets/about_settings_card.dart' show AboutCard;
-import 'package:muslim_azkar/Widgets/azkar_notifications_settings.dart'
+import 'package:muslim_azkar/Widgets/SettingsPageWidgets/about_settings_card.dart'
+    show AboutCard;
+import 'package:muslim_azkar/Widgets/SettingsPageWidgets/azkar_notifications_settings.dart'
     show AzkarNotificationsSettingsCard;
-import 'package:muslim_azkar/Widgets/mazhar_settings_card.dart'
+import 'package:muslim_azkar/Widgets/SettingsPageWidgets/mazhar_settings_card.dart'
     show MazharSettingsCard;
-import 'package:muslim_azkar/Widgets/text_size_settings_card.dart'
+import 'package:muslim_azkar/Widgets/SettingsPageWidgets/text_size_settings_card.dart'
     show TextSizeSettingsCard;
 
 class Settings extends StatelessWidget {

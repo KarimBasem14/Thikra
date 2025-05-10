@@ -6,9 +6,12 @@ import 'package:muslim_azkar/Screens/tasbih.dart' show Tasbih;
 import 'package:muslim_azkar/Widgets/asma2_hosna.dart' show Asma2Hosna;
 import 'package:muslim_azkar/Widgets/dua_card_main_screen.dart';
 import 'package:muslim_azkar/Widgets/hadith_card.dart' show HadithCard;
-import 'package:muslim_azkar/Widgets/sliver_app_bar.dart' show MainSliverAppBar;
-import 'package:muslim_azkar/Widgets/top_main_card.dart' show TopMainCard;
-import 'package:muslim_azkar/Widgets/wrd_card.dart' show WrdCard;
+import 'package:muslim_azkar/Widgets/MainScreenWidgets/sliver_app_bar.dart'
+    show MainSliverAppBar;
+import 'package:muslim_azkar/Widgets/MainScreenWidgets/top_main_card.dart'
+    show TopMainCard;
+import 'package:muslim_azkar/Widgets/MainScreenWidgets/wrd_card.dart'
+    show WrdCard;
 
 class HomepageWithSliverAppBar extends StatelessWidget {
   HomepageWithSliverAppBar({super.key});

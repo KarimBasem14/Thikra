@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/Screens/MainScreens/favorite_hadiths_page.dart'
+import 'package:muslim_azkar/Screens/favorite_hadiths_page.dart'
     show FavoriteHadithsPage;
+import 'package:muslim_azkar/Screens/MainScreens/favourites_page.dart';
 import 'package:muslim_azkar/Screens/MainScreens/homepage_with_sliver_app_bar.dart'
     show HomepageWithSliverAppBar;
 import 'package:muslim_azkar/Screens/MainScreens/settings.dart' show Settings;
-import 'package:muslim_azkar/Widgets/custom_nav_bar.dart' show CustomNavBar;
+import 'package:muslim_azkar/Widgets/MainScreenWidgets/custom_nav_bar.dart'
+    show CustomNavBar;
 
 class Root extends StatefulWidget {
   const Root({super.key});
@@ -24,7 +26,7 @@ class _RootState extends State<Root> {
   final List<Widget> _pages = [
     const Settings(),
     HomepageWithSliverAppBar(),
-    const FavoriteHadithsPage(),
+    const FavouritesPage(),
   ];
 
   @override

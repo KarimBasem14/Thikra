@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:muslim_azkar/Screens/duas_screen.dart';
+import 'package:muslim_azkar/Screens/favorite_hadiths_page.dart';
+import 'package:muslim_azkar/Screens/favourite_duas_page.dart';
 
-class DuaList extends StatelessWidget {
-  const DuaList({super.key});
+class FavouritesPage extends StatelessWidget {
+  const FavouritesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        titleTextStyle: Theme.of(context).appBarTheme.titleTextStyle,
+        centerTitle: true,
         title: Text(
-          "الأدعية",
+          "المُفضلة",
           style: GoogleFonts.kufam(),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => const DuasScreen(type: 'Quran')));
+                  builder: (ctx) => const FavouritesScreen(
+                        title: "مُفضلة الدعاء من القرآن الكريم",
+                        hiveName: "favouriteQuranDuasBox",
+                      )));
             },
             child: const Padding(
               padding: EdgeInsets.all(8.0),
@@ -31,7 +34,7 @@ class DuaList extends StatelessWidget {
                   padding: EdgeInsets.all(16.0),
                   child: ListTile(
                     title: Text(
-                      "أدعية من القرآن",
+                      "مُفضلة الدعاء من القرآن الكريم",
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         fontSize: 30,
@@ -50,8 +53,9 @@ class DuaList extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => const DuasScreen(
-                        type: 'hadith',
+                  builder: (ctx) => const FavouritesScreen(
+                        title: "مُفضلة الدعاء من السُنة",
+                        hiveName: "favouriteSunnahDuasBox",
                       )));
             },
             child: const Padding(
@@ -61,7 +65,7 @@ class DuaList extends StatelessWidget {
                   padding: EdgeInsets.all(16.0),
                   child: ListTile(
                     title: Text(
-                      "أدعية من السنة",
+                      "مُفضلة الدعاء من السُنة",
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         fontSize: 30,
@@ -77,6 +81,37 @@ class DuaList extends StatelessWidget {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => const FavouritesScreen(
+                        title: "مُفضلة الأحاديث",
+                        hiveName: "favoriteHadithBox",
+                      )));
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ListTile(
+                    title: Text(
+                      "مُفضلة الأحاديث",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
+                    ),
+                    leading: Image(
+                      // size: 50,
+                      image: AssetImage(
+                          r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\Hadith.png"),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

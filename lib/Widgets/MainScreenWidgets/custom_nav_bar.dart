@@ -40,7 +40,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
       ),
       const CurvedNavigationBarItem(
         child: Icon(Icons.star_outline, size: 30),
-        label: "الأحاديث المفضلة",
+        label: "المُفضلة",
       ),
     ];
     return CurvedNavigationBar(

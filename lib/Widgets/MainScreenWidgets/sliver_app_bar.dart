@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_azkar/Widgets/UtilityWidgets/dua_text_in_app_bar.dart'
     show DuaTextInAppBar;
-import 'package:muslim_azkar/Widgets/clipper_appbar.dart'
+import 'package:muslim_azkar/Widgets/MainScreenWidgets/clipper_appbar.dart'
     show BackgroundWaveClipper;
 import 'package:muslim_azkar/theme.dart'
     show darkThemeGradient, lightThemeGradient;

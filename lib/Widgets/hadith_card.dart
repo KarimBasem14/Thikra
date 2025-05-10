@@ -7,6 +7,8 @@ import 'package:muslim_azkar/DataSources/hadiths.dart'
     show hadithsWithExplanation;
 import 'package:muslim_azkar/Screens/hadith_explanation.dart'
     show HadithExplanationPage;
+import 'package:muslim_azkar/Widgets/UtilityWidgets/star_button.dart'
+    show StarButton;
 import 'package:share_plus/share_plus.dart';
 
 class HadithCard extends StatefulWidget {
@@ -159,7 +161,7 @@ class _HadithCardWithDataRetrievedState
                   },
                   icon: const Icon(Icons.info_outline_rounded),
                 ),
-                StarButton(index: widget.index),
+                StarButton(hiveName: "favoriteHadithBox", index: widget.index),
                 IconButton(
                   tooltip: "اختيار حديث اخر",
                   onPressed: widget.onPressFunction,
@@ -170,65 +172,6 @@ class _HadithCardWithDataRetrievedState
           ],
         ),
       ),
-    );
-  }
-}
-
-void addToFavourite(int index) {
-  int ID = index; // The hadith's ID in the box is its index from the map
-  favoriteHadithBox.put(ID, ID);
-}
-
-bool isFavourite(int index) {
-  // Checks if a hadith is favorited or not.
-  int ID = index; // The hadith's ID in the box is its index from the map
-  return favoriteHadithBox.containsKey(ID);
-}
-
-void removeFavourite(int index) {
-  int ID = index;
-  favoriteHadithBox.delete(ID);
-}
-
-class StarButton extends StatefulWidget {
-  final int index;
-  const StarButton({super.key, required this.index});
-
-  @override
-  State<StarButton> createState() => _StarButtonState();
-}
-
-class _StarButtonState extends State<StarButton> {
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      // Listen to changes in the favoriteHadithBox using Hive.box().listenable()
-      valueListenable: Hive.box('favoriteHadithBox').listenable(),
-      builder: (ctx, Box box, _) {
-        bool isFavorite = isFavourite(widget.index);
-        return IconButton(
-            onPressed: () {
-              if (isFavorite) {
-                removeFavourite(widget.index);
-              } else {
-                addToFavourite(widget.index);
-              }
-
-              setState(() {});
-            },
-            icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 100),
-              child: Icon(
-                isFavorite ? Icons.star : Icons.star_outline,
-                size: 32,
-                key: ValueKey<bool>(isFavorite), // Very important
-              ),
-              transitionBuilder: (child, animation) => RotationTransition(
-                turns: animation,
-                child: child,
-              ),
-            ));
-      },
     );
   }
 }

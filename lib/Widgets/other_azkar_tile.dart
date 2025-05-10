@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_azkar/Screens/other_azkar_screen.dart'
     show OtherAzkarScreen;
-import 'package:muslim_azkar/theme.dart'
-    show darkThemeGradient, lightThemeGradient;
+// import 'package:muslim_azkar/theme.dart'
+//     show darkThemeGradient, lightThemeGradient;
 
 class OtherAzkarTile extends StatelessWidget {
   final String title;
