@@ -45,6 +45,7 @@ dependencies:
   adaptive_theme: ^3.7.0
   hive: ^2.0.4
   hive_flutter: ^1.1.0
+  flutter_overlay_window: ^0.5.0
   
   
 
@@ -74,6 +75,9 @@ flutter:
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\sun.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\night.png
     - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png
+    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\dua.png
+    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\Quran.png
+    - D:\Code\Flutter\muslim_azkar\lib\Media\Icons\Prophet.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

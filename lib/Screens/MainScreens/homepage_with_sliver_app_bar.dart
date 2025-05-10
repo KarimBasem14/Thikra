@@ -4,6 +4,7 @@ import 'package:muslim_azkar/Screens/azkar_sabah.dart' show AzkarSabah;
 import 'package:muslim_azkar/Screens/other_azkar_listview.dart' show OtherAzkar;
 import 'package:muslim_azkar/Screens/tasbih.dart' show Tasbih;
 import 'package:muslim_azkar/Widgets/asma2_hosna.dart' show Asma2Hosna;
+import 'package:muslim_azkar/Widgets/dua_card_main_screen.dart';
 import 'package:muslim_azkar/Widgets/hadith_card.dart' show HadithCard;
 import 'package:muslim_azkar/Widgets/sliver_app_bar.dart' show MainSliverAppBar;
 import 'package:muslim_azkar/Widgets/top_main_card.dart' show TopMainCard;
@@ -28,17 +29,17 @@ class HomepageWithSliverAppBar extends StatelessWidget {
         "ورد المساء",
         Icon(Icons.dark_mode_rounded,
             color: isDarkMode ? Colors.white : Colors.black),
-        const Color(0xFF3F51B5)
+        isDarkMode ? const Color(0xFF3F51B5) : Colors.orangeAccent.shade100
       ],
       [
         "ورد الصباح",
         Icon(Icons.light_mode, color: isDarkMode ? Colors.white : Colors.black),
-        Colors.orangeAccent,
+        isDarkMode ? Colors.orangeAccent : Colors.amber.shade100,
       ],
       [
         "أذكار متنوعة",
         Icon(Icons.book, color: isDarkMode ? Colors.white : Colors.black),
-        const Color(0xFF5DADE2)
+        isDarkMode ? const Color(0xFF5DADE2) : Colors.cyan.shade100,
       ],
       [
         "تسبيح",
@@ -46,7 +47,7 @@ class HomepageWithSliverAppBar extends StatelessWidget {
             const AssetImage(
                 r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\muslim-tasbih.png"),
             color: isDarkMode ? Colors.white : Colors.black),
-        Colors.blue.shade900
+        isDarkMode ? Colors.blue.shade900 : Colors.blue.shade100,
       ]
     ];
 
@@ -68,6 +69,9 @@ class HomepageWithSliverAppBar extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          const SliverToBoxAdapter(
+            child: DuaCard(),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(10),
@@ -105,19 +109,4 @@ class HomepageWithSliverAppBar extends StatelessWidget {
       ),
     );
   }
-}
-
-PageRouteBuilder downTransitionPageRouteBuilder(Widget pageToGoTo) {
-  return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => pageToGoTo,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, -1.0);
-        const end = Offset.zero;
-        final tween = Tween(begin: begin, end: end);
-        final offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      });
 }

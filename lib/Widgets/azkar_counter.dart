@@ -75,7 +75,8 @@ class _AzkarCounterState extends State<AzkarCounter> {
                           widget.text,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: widget.textSize, color: Colors.white),
+                              fontSize: widget.textSize,
+                              color: isDarkMode ? Colors.white : Colors.black),
                         ),
                         if (widget.footnote != null) ...[
                           const SizedBox(

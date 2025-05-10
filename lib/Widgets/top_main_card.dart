@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_azkar/Screens/azkar_masa2.dart' show AzkarMasa2;
 import 'package:muslim_azkar/Screens/azkar_sabah.dart' show AzkarSabah;
+import 'package:muslim_azkar/page_animations.dart'
+    show sideTransitionPageRouteBuilder;
 
 class TopMainCard extends StatelessWidget {
   const TopMainCard({
@@ -67,19 +69,4 @@ class TopMainCard extends StatelessWidget {
       ),
     );
   }
-}
-
-PageRouteBuilder sideTransitionPageRouteBuilder(Widget pageToGoTo) {
-  return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => pageToGoTo,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        final tween = Tween(begin: begin, end: end);
-        final offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      });
 }

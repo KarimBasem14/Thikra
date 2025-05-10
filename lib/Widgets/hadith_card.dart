@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:muslim_azkar/Api/favoriteHadithBox.dart' show favoriteHadithBox;
 import 'package:muslim_azkar/DataSources/hadiths.dart'
@@ -120,7 +121,12 @@ class _HadithCardWithDataRetrievedState
                     ),
                   ),
                 ),
-                StarButton(index: widget.index)
+                IconButton(
+                  onPressed: () async {
+                    await Clipboard.setData(ClipboardData(text: widget.hadith));
+                  },
+                  icon: const Icon(Icons.copy),
+                ),
               ],
             ),
             const SizedBox(height: 15),
@@ -146,13 +152,14 @@ class _HadithCardWithDataRetrievedState
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (ctx) =>
-                            HadithExplanationPage(sharh: widget.sharh),
+                        builder: (ctx) => HadithExplanationPage(
+                            pageTitle: "شرح الحديث", sharh: widget.sharh),
                       ),
                     );
                   },
                   icon: const Icon(Icons.info_outline_rounded),
                 ),
+                StarButton(index: widget.index),
                 IconButton(
                   tooltip: "اختيار حديث اخر",
                   onPressed: widget.onPressFunction,

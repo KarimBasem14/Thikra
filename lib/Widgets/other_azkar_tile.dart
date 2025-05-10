@@ -20,9 +20,9 @@ class OtherAzkarTile extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            gradient: isDarkMode ? darkThemeGradient : lightThemeGradient,
-          ),
+              borderRadius: BorderRadius.circular(10),
+              // gradient: isDarkMode ? darkThemeGradient : lightThemeGradient,
+              color: Theme.of(context).cardColor),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -41,9 +41,9 @@ class OtherAzkarTile extends StatelessWidget {
                       child: Text(
                         title,
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 20,
-                          color: Colors.white,
+                          color: isDarkMode ? Colors.white : Colors.black,
                         ),
                       ),
                     )),

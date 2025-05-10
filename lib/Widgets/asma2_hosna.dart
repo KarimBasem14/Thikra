@@ -131,9 +131,8 @@ class _Asma2HosnaState extends State<Asma2Hosna> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) =>
-                            Asma2Grid(asma2: _asma2AllahElHosna)));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (ctx) => const Asma2Grid()));
                   },
                   icon: const Icon(Icons.bookmarks),
                   alignment: Alignment.topLeft,

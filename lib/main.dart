@@ -14,6 +14,20 @@ import 'package:timezone/data/latest.dart' as tz;
 
 import 'Api/notificationapi.dart' show NotificationService;
 
+import 'package:muslim_azkar/Widgets/overlay_widget.dart' show OverlayWidget;
+
+// // overlay entry point
+// @pragma("vm:entry-point")
+// void overlayMain() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(
+//     const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: OverlayWidget(),
+//     ),
+//   );
+// }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.init();

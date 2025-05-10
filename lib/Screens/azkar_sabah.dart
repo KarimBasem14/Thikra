@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import 'package:muslim_azkar/DataSources/azkar.dart' show Zikr, azkarsabah;
 import 'package:muslim_azkar/Widgets/azkar_counter.dart' show AzkarCounter;
@@ -24,6 +25,13 @@ class _AzkarSabahState extends State<AzkarSabah> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     textSize = prefs.getDouble("textSize") ?? 20;
     setState(() {});
+    // final bool permission = await FlutterOverlayWindow.isPermissionGranted();
+    // if (permission == false) {
+    //   await FlutterOverlayWindow.requestPermission();
+    // } else {
+    //   await FlutterOverlayWindow.showOverlay();
+    //   // log("");
+    // }
   }
 
   void removeitem(int index) {

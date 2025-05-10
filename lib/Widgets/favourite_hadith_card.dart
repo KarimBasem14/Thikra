@@ -56,7 +56,7 @@ class FavouriteHadithCard extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (ctx) => const HadithExplanationPage(
-                            sharh: "لا يوجد شرح الأن"),
+                            pageTitle: "شرح الحديث", sharh: "لا يوجد شرح الأن"),
                       ),
                     );
                   },

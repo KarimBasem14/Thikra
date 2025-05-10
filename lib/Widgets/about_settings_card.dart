@@ -29,6 +29,13 @@ class AboutCard extends StatelessWidget {
               textAlign: TextAlign.right,
             ),
           ),
+          ListTile(
+            trailing: Icon(Icons.menu_book_outlined),
+            title: Text(
+              "المراجع",
+              textAlign: TextAlign.right,
+            ),
+          ),
         ],
       ),
     );

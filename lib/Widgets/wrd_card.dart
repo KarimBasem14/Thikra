@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:muslim_azkar/page_animations.dart'
+    show sideTransitionPageRouteBuilder;
 
 class WrdCard extends StatelessWidget {
   const WrdCard(
@@ -56,23 +58,4 @@ class WrdCard extends StatelessWidget {
       // ),
     );
   }
-}
-
-PageRouteBuilder sideTransitionPageRouteBuilder(Widget pageToGoTo) {
-  return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 500),
-      pageBuilder: (context, animation, secondaryAnimation) => pageToGoTo,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        const curve =
-            Curves.easeInOut; // Helps in making the animation smoother
-        final tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve)); // .chain helps in making it smoother too
-        final offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      });
 }
