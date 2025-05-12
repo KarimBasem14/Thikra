@@ -6,9 +6,12 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/Api/favoriteHadithBox.dart' show favoriteHadithBox;
-import 'package:muslim_azkar/Api/favouriteDuasBox.dart'
-    show favouriteQuranDuasBox, favouriteSunnahDuasBox;
+import 'package:muslim_azkar/Api/hive_box_definitions.dart'
+    show
+        favoriteHadithBox,
+        favouriteAzkarBox,
+        favouriteQuranDuasBox,
+        favouriteSunnahDuasBox;
 import 'package:muslim_azkar/root.dart' show Root;
 import 'package:muslim_azkar/theme.dart' show darkTheme, lightTheme;
 
@@ -37,6 +40,7 @@ void main() async {
   favoriteHadithBox = await Hive.openBox("favoriteHadithBox");
   favouriteQuranDuasBox = await Hive.openBox("favouriteQuranDuasBox");
   favouriteSunnahDuasBox = await Hive.openBox("favouriteSunnahDuasBox");
+  favouriteAzkarBox = await Hive.openBox("favouriteAzkarBox");
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   runApp(MyApp(
     savedThemeMode: savedThemeMode,

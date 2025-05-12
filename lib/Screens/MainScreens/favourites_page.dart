@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:muslim_azkar/Screens/favorite_hadiths_page.dart';
+// import 'package:muslim_azkar/Screens/favorite_hadiths_page.dart';
 import 'package:muslim_azkar/Screens/favourite_duas_page.dart';
 
 class FavouritesPage extends StatelessWidget {
@@ -19,6 +19,37 @@ class FavouritesPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => const FavouritesScreen(
+                        title: "مُفضلة الأذكار",
+                        hiveName: "favouriteAzkarBox",
+                      )));
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ListTile(
+                    title: Text(
+                      "مُفضلة الأذكار",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
+                    ),
+                    leading: Image(
+                      // size: 50,
+                      image: AssetImage(
+                          r"D:\Code\Flutter\muslim_azkar\lib\Media\Icons\Islam.png"),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -111,7 +142,7 @@ class FavouritesPage extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:muslim_azkar/Api/favoriteHadithBox.dart' show favoriteHadithBox;
+// import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:muslim_azkar/Api/hive_box_definitions.dart' show favoriteHadithBox;
 import 'package:muslim_azkar/DataSources/hadiths.dart'
     show hadithsWithExplanation;
 import 'package:muslim_azkar/Screens/hadith_explanation.dart'

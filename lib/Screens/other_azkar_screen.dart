@@ -18,6 +18,8 @@ class OtherAzkarScreen extends StatefulWidget {
 
 class _OtherAzkarScreenState extends State<OtherAzkarScreen> {
   double textSize = 20;
+  List otherAzkarMapKeys = otherAzkarMap.keys.toList();
+  int titleIndex = 0;
 
   Future<void> getTextSize() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -28,13 +30,13 @@ class _OtherAzkarScreenState extends State<OtherAzkarScreen> {
   @override
   void initState() {
     getTextSize();
+    titleIndex = otherAzkarMapKeys.indexOf(widget.title);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     List<String> azkar = otherAzkarMap[widget.title]["text"];
-
     if (widget.title == "المقدمة" || widget.title == "فضل الذكر") {
       String text = "";
       for (int i = 0; i < otherAzkarMap[widget.title]["text"].length; i++) {
@@ -73,9 +75,15 @@ class _OtherAzkarScreenState extends State<OtherAzkarScreen> {
       body: ListView.builder(
         itemCount: azkar.length,
         itemBuilder: (ctx, i) {
+          // ignore: non_constant_identifier_names
+          // The problem is that I need to identify the name of the section and the index, that's why I have this ID variable here
+          int ID = titleIndex * 1000 +
+              i; // 1000 is just a random number to ensure for no collisions
           return OtherAzkarCard(
             zikr: azkar[i],
             fontSize: textSize,
+            hiveName: "favouriteAzkarBox",
+            id: ID,
           );
         },
       ),
