@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/Api/hive_box_definitions.dart'
+import 'package:muslim_azkar/services/hive_box_definitions.dart'
     show favoriteHadithBox;
 import 'package:muslim_azkar/Screens/hadith_explanation.dart'
     show HadithExplanationPage;

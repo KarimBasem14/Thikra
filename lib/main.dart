@@ -3,23 +3,27 @@
 import 'dart:developer';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/Api/hive_box_definitions.dart'
+import 'package:muslim_azkar/services/hive_box_definitions.dart'
     show
         favoriteHadithBox,
         favouriteAzkarBox,
         favouriteQuranDuasBox,
         favouriteSunnahDuasBox;
+import 'package:muslim_azkar/firebase_options.dart';
 import 'package:muslim_azkar/root.dart' show Root;
 import 'package:muslim_azkar/theme.dart' show darkTheme, lightTheme;
 
 import 'package:timezone/data/latest.dart' as tz;
 
-import 'Api/notificationapi.dart' show NotificationService;
+import 'services/notificationapi.dart' show NotificationService;
 
 import 'package:muslim_azkar/Widgets/overlay_widget.dart' show OverlayWidget;
+import 'services/firebase_messaging_service.dart';
 
 // // overlay entry point
 // @pragma("vm:entry-point")
@@ -42,6 +46,16 @@ void main() async {
   favouriteSunnahDuasBox = await Hive.openBox("favouriteSunnahDuasBox");
   favouriteAzkarBox = await Hive.openBox("favouriteAzkarBox");
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final messagingService = FirebaseMessagingService();
+  await messagingService.init();
+
+  print(await FirebaseMessaging.instance.getToken());
+
   runApp(MyApp(
     savedThemeMode: savedThemeMode,
   ));

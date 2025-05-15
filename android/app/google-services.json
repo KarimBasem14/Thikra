@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "604517664277",
-    "project_id": "azkarnew-c7e03",
-    "storage_bucket": "azkarnew-c7e03.appspot.com"
+    "project_number": "1053773858698",
+    "project_id": "thikramuslimathkar",
+    "storage_bucket": "thikramuslimathkar.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604517664277:android:7dd47899af2def864a301c",
+        "mobilesdk_app_id": "1:1053773858698:android:5bc2ceb80cf9c8e8b22a73",
         "android_client_info": {
           "package_name": "com.example.azkar"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAlSp61zC9jY-hnjMfRkr02zX3Lm8u6g3g"
+          "current_key": "AIzaSyCvcE4XDR_bvtNCh51olmzJFVktOczC3Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053773858698:android:27485e27a4e03e39b22a73",
+        "android_client_info": {
+          "package_name": "com.example.muslim_azkar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvcE4XDR_bvtNCh51olmzJFVktOczC3Cc"
         }
       ],
       "services": {

@@ -1,7 +1,8 @@
 import 'dart:developer' show log;
 
 import 'package:flutter/material.dart';
-import 'package:muslim_azkar/Api/notificationapi.dart' show NotificationService;
+import 'package:muslim_azkar/services/notificationapi.dart'
+    show NotificationService;
 
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
