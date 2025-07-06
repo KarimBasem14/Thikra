@@ -54,7 +54,7 @@ void main() async {
   final messagingService = FirebaseMessagingService();
   await messagingService.init();
 
-  print(await FirebaseMessaging.instance.getToken());
+  // print(await FirebaseMessaging.instance.getToken());
 
   runApp(MyApp(
     savedThemeMode: savedThemeMode,

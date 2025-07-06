@@ -3,6 +3,9 @@ import 'package:muslim_azkar/Screens/azkar_masa2.dart' show AzkarMasa2;
 import 'package:muslim_azkar/Screens/azkar_sabah.dart' show AzkarSabah;
 import 'package:muslim_azkar/Screens/other_azkar_listview.dart' show OtherAzkar;
 import 'package:muslim_azkar/Screens/tasbih.dart' show Tasbih;
+import 'package:muslim_azkar/Widgets/MainScreenWidgets/prayer_time_card.dart'
+    show PrayerTimeCard;
+// import 'package:muslim_azkar/Widgets/MainScreenWidgets/prayer_time_card.dart';
 import 'package:muslim_azkar/Widgets/asma2_hosna.dart' show Asma2Hosna;
 import 'package:muslim_azkar/Widgets/dua_card_main_screen.dart';
 import 'package:muslim_azkar/Widgets/hadith_card.dart' show HadithCard;
@@ -74,7 +77,8 @@ class HomepageWithSliverAppBar extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(
-            child: DuaCard(),
+            // child: DuaCard(),
+            child: PrayerTimeCard(),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(10),
