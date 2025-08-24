@@ -108,10 +108,7 @@ class _HadithCardWithDataRetrievedState
                       size: 32,
                     )),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 32.0 +
-                            35.0), // adding 35 to account for the font size, and adding 32 to account for the space that the icon takes, padding just shifts the widget in this case to the right
+                  child: Center(
                     child: Text(
                       "حديث اليوم",
                       style: Theme.of(context)

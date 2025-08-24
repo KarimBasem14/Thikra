@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:flutter/material.dart';
@@ -47,14 +48,16 @@ void main() async {
   favouriteAzkarBox = await Hive.openBox("favouriteAzkarBox");
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (!kIsWeb) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-  final messagingService = FirebaseMessagingService();
-  await messagingService.init();
+    final messagingService = FirebaseMessagingService();
+    await messagingService.init();
 
-  print(await FirebaseMessaging.instance.getToken());
+    print(await FirebaseMessaging.instance.getToken());
+  }
 
   runApp(MyApp(
     savedThemeMode: savedThemeMode,
